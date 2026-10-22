@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyBridge CloudMart - Enterprise Cloud Solutions & Services</title>
+  <meta name="description" content="SkyBridge Tech Innovations Ltd. enterprise cloud marketplace featuring cloud security audits, DevOps automation, and Azure virtual datacenter solutions.">
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header / Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-cloud-bolt"></i>
+        </div>
+        <div class="brand-text">
+          <h1>SkyBridge <span class="brand-highlight">CloudMart</span></h1>
+          <p class="brand-sub">SkyBridge Tech Innovations Ltd. • Enterprise Cloud Platform</p>
+        </div>
+      </div>
+
+      <!-- Cloud Health Status Badge -->
+      <div class="cloud-status-badge" id="cloudStatusBadge">
+        <span class="status-indicator-dot pulsating"></span>
+        <div class="status-info">
+          <span class="status-label" id="dbStatusLabel">Azure SQL: Connected</span>
+          <span class="status-sub" id="dbModeLabel">Resilient Zero-Downtime Mirror</span>
+        </div>
+      </div>
+
+      <!-- Auth Controls & User Session Info -->
+      <div class="nav-auth-section" id="navAuthSection">
+        <div class="user-pill hidden" id="userSessionPill">
+          <i class="fa-solid fa-user-shield" id="userRoleIcon"></i>
+          <span class="user-name" id="sessionUserName">Jay Kumar</span>
+          <span class="role-badge" id="sessionUserRole">Customer</span>
+          <button class="btn-logout" id="btnLogout" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          </button>
+        </div>
+        <div class="guest-actions" id="guestActions">
+          <a href="#authSection" class="btn btn-outline" id="navBtnLogin">Sign In</a>
+          <a href="#authSection" class="btn btn-primary" id="navBtnRegister">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Live Metrics -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-shield-halved"></i> ISO/IEC 27001 & SOC 2 Zero-Trust Compliant
+        </div>
+        <h2>Enterprise Cloud Solutions, Managed DevOps & PaaS Services</h2>
+        <p>
+          Architected for high availability, multi-region elasticity, and mission-critical cloud workloads. 
+          Discover pre-packaged architectural solutions and professional service engagements for modern digital transformation.
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">99.99%</span>
+            <span class="stat-label">Uptime SLA Guarantee</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">Azure PaaS</span>
+            <span class="stat-label">Cloud Native Architecture</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">1-5 Instances</span>
+            <span class="stat-label">Dynamic Auto-Scaling</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">Zero-Crash</span>
+            <span class="stat-label">Fault-Tolerant Engine</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Application Body -->
+  <main class="main-container">
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- SECTION: Authentication & Registration Area -->
+    <section class="section-card auth-section" id="authSection">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <i class="fa-solid fa-key section-icon"></i>
+          <div>
+            <h3>Cloud Identity & Access Management</h3>
+            <p>Register as a new Customer or authenticate with Admin / Customer credentials.</p>
+          </div>
+        </div>
+        <div class="quick-demo-badges">
+          <button class="btn-demo-fill" id="btnQuickCustomer" type="button">
+            <i class="fa-solid fa-user"></i> Quick Customer (Jay Kumar)
+          </button>
+          <button class="btn-demo-fill admin-tint" id="btnQuickAdmin" type="button">
+            <i class="fa-solid fa-user-gear"></i> Quick Admin (Elena/Michael)
+          </button>
+        </div>
+      </div>
+
+      <div class="auth-grid">
+        <!-- Customer Registration Card -->
+        <div class="auth-card" id="cardRegistration">
+          <div class="card-top">
+            <div class="card-icon-tag"><i class="fa-solid fa-user-plus"></i></div>
+            <h4>Customer Registration</h4>
+          </div>
+          <p class="card-desc">Create your SkyBridge Customer account to unlock enterprise catalog ordering.</p>
+
+          <div id="regAlertBox" class="alert-box hidden"></div>
+
+          <form id="formRegister" novalidate>
+            <div class="form-group">
+              <label for="regFullName">Full Name <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-id-card"></i>
+                <input type="text" id="regFullName" placeholder="e.g. Elena Vance" required minlength="3">
+              </div>
+              <small class="field-hint">Minimum 3 characters required.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="regEmail">Work Email Address <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="regEmail" placeholder="name@company.com" required>
+              </div>
+              <small class="field-hint">Must be a valid format with domain.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="regPassword">Secure Password <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="regPassword" placeholder="••••••••" required minlength="6">
+              </div>
+              <small class="field-hint">Minimum 6 characters for cloud security compliance.</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="btnSubmitRegister">
+              <i class="fa-solid fa-paper-plane"></i> Complete Customer Registration
+            </button>
+          </form>
+        </div>
+
+        <!-- Login Card -->
+        <div class="auth-card" id="cardLogin">
+          <div class="card-top">
+            <div class="card-icon-tag"><i class="fa-solid fa-shield-halved"></i></div>
+            <h4>Account Login</h4>
+          </div>
+          <p class="card-desc">Authenticate to access your shopping cart or administrative CMS controls.</p>
+
+          <div id="loginAlertBox" class="alert-box hidden"></div>
+
+          <form id="formLogin" novalidate>
+            <div class="form-group">
+              <label for="loginEmail">Email Address <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-at"></i>
+                <input type="email" id="loginEmail" placeholder="jaykumar@customer.co.nz" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="loginPassword">Password <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-key"></i>
+                <input type="password" id="loginPassword" placeholder="••••••••" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-secondary btn-block" id="btnSubmitLogin">
+              <i class="fa-solid fa-right-to-bracket"></i> Authenticate & Enter Portal
+            </button>
+          </form>
+
+          <div class="credentials-helper">
+            <h6><i class="fa-solid fa-circle-info"></i> Pre-seeded Credentials:</h6>
+            <div class="helper-row">
+              <strong>Customer:</strong> <code>jaykumar@customer.co.nz</code> / <code>Customer@123</code>
+            </div>
+            <div class="helper-row">
+              <strong>Admin:</strong> <code>admin@skybridge.co.nz</code> / <code>Admin@123</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Admin Content Management System (CMS) -->
+    <section class="section-card admin-cms-section hidden" id="adminCmsSection">
+      <div class="section-header admin-header">
+        <div class="section-title-wrap">
+          <i class="fa-solid fa-sliders section-icon admin-icon"></i>
+          <div>
+            <h3>Admin Content Management System (CMS)</h3>
+            <p>Real-time CRUD management for enterprise cloud products & services in the Azure SQL Database.</p>
+          </div>
+        </div>
+        <div class="admin-badge-indicator">
+          <i class="fa-solid fa-crown"></i> Administrator Mode Active
+        </div>
+      </div>
+
+      <div class="cms-layout">
+        <!-- CMS Product Form (Add / Edit) -->
+        <div class="cms-form-card">
+          <div class="card-top">
+            <h4 id="cmsFormTitle"><i class="fa-solid fa-circle-plus"></i> Add New Cloud Service</h4>
+            <span class="badge" id="cmsModeBadge">Create Mode</span>
+          </div>
+
+          <div id="cmsAlertBox" class="alert-box hidden"></div>
+
+          <form id="formProductCms">
+            <input type="hidden" id="cmsProductId" value="">
+
+            <div class="form-group">
+              <label for="cmsProductName">Product / Service Name <span class="req">*</span></label>
+              <input type="text" id="cmsProductName" placeholder="e.g. AI-Powered Threat Hunting Sentinel" required minlength="3">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label for="cmsCategory">Category <span class="req">*</span></label>
+                <select id="cmsCategory" required>
+                  <option value="">-- Select Category --</option>
+                  <option value="Cloud Security">Cloud Security</option>
+                  <option value="DevOps & Automation">DevOps & Automation</option>
+                  <option value="Cloud Architecture">Cloud Architecture</option>
+                  <option value="Data & Analytics">Data & Analytics</option>
+                  <option value="Managed Services">Managed Services</option>
+                  <option value="Artificial Intelligence">Artificial Intelligence</option>
+                </select>
+              </div>
+
+              <div class="form-group col-quarter">
+                <label for="cmsPrice">Price (NZD $) <span class="req">*</span></label>
+                <input type="number" id="cmsPrice" step="0.01" min="0" placeholder="1999.00" required>
+              </div>
+
+              <div class="form-group col-quarter">
+                <label for="cmsStock">Stock Units <span class="req">*</span></label>
+                <input type="number" id="cmsStock" min="0" placeholder="20" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cmsDescription">Service Description & SLA Details</label>
+              <textarea id="cmsDescription" rows="3" placeholder="Detailed architectural deliverables, compliance standards, and engineer response metrics..."></textarea>
+            </div>
+
+            <div class="cms-form-actions">
+              <button type="submit" class="btn btn-primary" id="btnCmsSave">
+                <i class="fa-solid fa-cloud-arrow-up"></i> <span id="btnCmsSaveText">Publish to Cloud Catalog</span>
+              </button>
+              <button type="button" class="btn btn-outline hidden" id="btnCmsCancel">
+                <i class="fa-solid fa-xmark"></i> Cancel Edit
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- CMS Inventory Table -->
+        <div class="cms-table-card">
+          <div class="card-top">
+            <h4><i class="fa-solid fa-list-check"></i> Cloud Catalog Inventory (<span id="cmsProductCount">0</span> items)</h4>
+            <button class="btn btn-sm btn-outline" id="btnRefreshCatalog"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table" id="tableCmsInventory">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Product / Service</th>
+                  <th>Category</th>
+                  <th>Price (NZD)</th>
+                  <th>Stock</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="cmsTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Customer Storefront (Product Catalog Grid) -->
+    <section class="section-card storefront-section" id="storefrontSection">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <i class="fa-solid fa-cubes-stacked section-icon"></i>
+          <div>
+            <h3>Cloud Solutions & Services Catalog</h3>
+            <p>Select enterprise cloud packages and add them to your interactive shopping cart.</p>
+          </div>
+        </div>
+        <div class="catalog-filters">
+          <span class="catalog-count-pill" id="catalogCountPill">Loading solutions...</span>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+
+    <!-- SECTION: Customer Shopping Cart -->
+    <section class="section-card cart-section" id="cartSection">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <i class="fa-solid fa-cart-shopping section-icon"></i>
+          <div>
+            <h3>Enterprise Shopping Cart</h3>
+            <p>Review selected cloud engagements, adjust deployment units, and review financial subtotals.</p>
+          </div>
+        </div>
+        <div class="cart-user-indicator">
+          <span>Active Cart For: <strong id="cartCustomerName">Jay Kumar (Customer)</strong></span>
+        </div>
+      </div>
+
+      <div class="cart-layout">
+        <!-- Cart Items Table -->
+        <div class="cart-items-card">
+          <div id="cartEmptyState" class="empty-state hidden">
+            <i class="fa-solid fa-cart-plus empty-icon"></i>
+            <h4>Your cloud cart is currently empty</h4>
+            <p>Explore our solutions catalog above and add services to assemble your deployment package.</p>
+          </div>
+
+          <div class="table-responsive" id="cartTableWrapper">
+            <table class="data-table" id="cartTable">
+              <thead>
+                <tr>
+                  <th>Cloud Solution</th>
+                  <th>Category</th>
+                  <th>Unit Price</th>
+                  <th>Quantity</th>
+                  <th>Subtotal</th>
+                  <th class="text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="cartTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Cart Financial Summary -->
+        <div class="cart-summary-card">
+          <h4>Order Summary</h4>
+          <div class="summary-line">
+            <span>Distinct Items</span>
+            <strong id="summaryItemCount">0</strong>
+          </div>
+          <div class="summary-line">
+            <span>Total Deployment Units</span>
+            <strong id="summaryTotalUnits">0</strong>
+          </div>
+          <div class="summary-line">
+            <span>Cloud Deployment SLA</span>
+            <span class="text-success">Enterprise 99.99%</span>
+          </div>
+          <div class="summary-line">
+            <span>Azure Region</span>
+            <span>Australia East (Sydney)</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-total-line">
+            <span>Grand Total (NZD)</span>
+            <span class="grand-total-amount" id="summaryGrandTotal">$0.00</span>
+          </div>
+          <button class="btn btn-primary btn-block btn-lg" id="btnCheckout" type="button">
+            <i class="fa-solid fa-credit-card"></i> Proceed to Cloud Provisioning
+          </button>
+          <p class="summary-disclaimer">
+            <i class="fa-solid fa-lock"></i> All transactions are backed by Microsoft Azure SQL transactional ACID guarantees.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h5>SkyBridge Tech Innovations Ltd.</h5>
+        <p>Auckland Institute of Studies (AIS) • SOFT807 Cloud Applications Development</p>
+        <p class="copyright">Assessment 1 Enterprise Implementation • Trimester 3, 2026</p>
+      </div>
+      <div class="footer-col text-right">
+        <p><strong>Cloud Stack:</strong> Node.js • Express • Microsoft Azure SQL • Azure App Service • Render PaaS</p>
+        <p><strong>DevOps Author:</strong> Jay Kumar (Student ID: 20240001)</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- jQuery & Application Logic -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

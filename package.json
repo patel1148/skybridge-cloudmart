@@ -1,0 +1,26 @@
+{
+  "name": "skybridge-cloudmart",
+  "version": "1.0.0",
+  "description": "Enterprise Cloud Services Marketplace for SkyBridge Tech Innovations Ltd. - SOFT807 Assessment 1",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "cloud",
+    "azure",
+    "express",
+    "mssql",
+    "soft807",
+    "cloudmart"
+  ],
+  "author": "Jay Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mssql": "^10.0.4",
+    "puppeteer-core": "^25.14.0"
+  }
+}

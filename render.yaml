@@ -1,0 +1,37 @@
+# ============================================================================
+# RENDER CLOUD BLUEPRINT SPECIFICATION (TASK 2.2 SECOND CLOUD PLATFORM)
+# Course: SOFT807 Cloud Applications Development - Assessment 1
+# Platform: Render PaaS (Multi-Cloud Deployment for SkyBridge Tech Innovations)
+# ============================================================================
+
+services:
+  - type: web
+    name: skybridge-cloudmart-paas
+    env: node
+    plan: standard
+    region: oregon
+    branch: main
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/status
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DB_SERVER
+        value: sqldb-skybridge-bi.database.windows.net
+      - key: DB_NAME
+        value: sqldb-skybridge-bi
+      - key: DB_USER
+        value: cloudadmin
+      - key: DB_PORT
+        value: 1433
+      - key: DB_ENCRYPT
+        value: true
+    scaling:
+      minInstances: 1
+      maxInstances: 5
+      targetCPUPercent: 70
+      targetMemoryPercent: 75
