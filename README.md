@@ -154,5 +154,7 @@ This repository includes a fully automated **GitHub Actions CI/CD Pipeline** def
 - **Institution:** Auckland Institute of Studies (AIS), New Zealand
 - **Faculty:** Faculty of Information Technology
 - **Course:** SOFT807 - Cloud Applications Development
-- **Student Name:** Jay Kumar
+- **Student Name:** Jaykumar Maheshbhai Patel
+- **Student ID:** 271074230
+- **Student Email:** 271074230@aisstudent.ac.nz
 - **Date:** October 2026

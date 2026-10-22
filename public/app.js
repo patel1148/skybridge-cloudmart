@@ -9,7 +9,7 @@ $(document).ready(function () {
   // Application State
   let currentUser = {
     UserID: 2,
-    FullName: 'Jay Kumar',
+    FullName: 'Jaykumar Patel',
     Email: 'jaykumar@customer.co.nz',
     UserRole: 'Customer'
   };
@@ -119,19 +119,6 @@ $(document).ready(function () {
     $('#summaryItemCount').text('0');
     $('#summaryTotalUnits').text('0');
     $('#summaryGrandTotal').text('$0.00');
-  });
-
-  // Quick Demo Buttons
-  $('#btnQuickCustomer').on('click', function () {
-    $('#loginEmail').val('jaykumar@customer.co.nz');
-    $('#loginPassword').val('Customer@123');
-    $('#formLogin').submit();
-  });
-
-  $('#btnQuickAdmin').on('click', function () {
-    $('#loginEmail').val('admin@skybridge.co.nz');
-    $('#loginPassword').val('Admin@123');
-    $('#formLogin').submit();
   });
 
   // Login Form Submission

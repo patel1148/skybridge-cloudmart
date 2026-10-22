@@ -46,7 +46,7 @@ const inMemoryStore = {
     },
     {
       UserID: 2,
-      FullName: 'Jay Kumar',
+      FullName: 'Jaykumar Patel',
       Email: 'jaykumar@customer.co.nz',
       PasswordHash: 'Customer@123',
       UserRole: 'Customer',
